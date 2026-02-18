@@ -20,7 +20,7 @@ def power_set(host, port, index, value):
         f"http://{host}:{port}/io.cgi?DO{value_str}{index}"
     )
     response.raise_for_status()
-    
+
     # Check, that the port is in the desired state
     state = get_state(response, index)
     if state != value:
@@ -31,7 +31,7 @@ def power_get(host, port, index):
     assert 1 <= index <= 8
     # get the contents of the main page
     response = requests.get(f"http://{host}:{port}/io.cgi?relay")
-    
+
     response.raise_for_status()
     state = get_state(response, index)
     return state
